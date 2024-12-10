@@ -11,13 +11,14 @@ import {
 import { toast } from "react-toastify";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAbbyEPckvP58_Kv0Ki-jaAHPBUmLqzTAI",
-  authDomain: "netflix-clone-575bb.firebaseapp.com",
-  projectId: "netflix-clone-575bb",
-  storageBucket: "netflix-clone-575bb.firebasestorage.app",
-  messagingSenderId: "820354260914",
-  appId: "1:820354260914:web:546f224ca29c573f3d4eab"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
+
 
 
 const app = initializeApp(firebaseConfig);
@@ -42,7 +43,7 @@ const signup = async (name, email, password) => {
 
 const login = async (email, password) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password); 
+    await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
     console.log(error);
     toast.error(error.code.split('/')[1].split('-').join(" "));
